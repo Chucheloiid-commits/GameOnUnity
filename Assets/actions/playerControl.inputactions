@@ -1,5 +1,5 @@
 {
-    "name": "blackControl",
+    "name": "playerControl",
     "maps": [
         {
             "name": "blackCircle",
