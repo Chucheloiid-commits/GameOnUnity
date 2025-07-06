@@ -1,26 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class movePlayer : MonoBehaviour
-//{
-//    private Rigidbody2D rb;
-//    public float speed = 0.5f;
-//    private Vector2 moveVector;
-
-//    void Awake()
-//    {
-//        rb = GetComponent<Rigidbody2D>();
-//    }
-
-//    void Update()
-//    {
-//        moveVector.x = Input.GetAxis("Horizontal");
-//        moveVector.y = Input.GetAxis("Vertical");
-//        rb.MovePosition(rb.position + moveVector * speed * Time.deltaTime);
-//    }
-//}
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,11 +12,34 @@ public class movePlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D не найден на игроке!");
+        }
+        if (playerInput == null)
+        {
+            Debug.LogError("PlayerInput не найден на игроке!");
+        }
+        else
+        {
+            playerInput.currentActionMap.Enable();
+            Debug.Log("PlayerInput и Action Map '" + playerInput.currentActionMap.name + "' включены.");
+        }
     }
 
+    // В Update только считываем ввод
     void Update()
     {
         moveVector = playerInput.actions["Move"].ReadValue<Vector2>();
-        rb.MovePosition(rb.position + moveVector * speed * Time.deltaTime);
+        Debug.Log("Move Vector: " + moveVector);
+    }
+
+    // В FixedUpdate применяем физическое движение
+    void FixedUpdate()
+    {
+        // Движение, основанное на физике, должно быть в FixedUpdate
+        // Для стабильности при использовании Rigidbody2D.MovePosition
+        rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
     }
 }
