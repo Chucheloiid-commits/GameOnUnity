@@ -32,7 +32,7 @@ public class movePlayer : MonoBehaviour
     void Update()
     {
         moveVector = playerInput.actions["Move"].ReadValue<Vector2>();
-        Debug.Log("Move Vector: " + moveVector);
+        //Debug.Log("Move Vector: " + moveVector);
     }
 
     // В FixedUpdate применяем физическое движение
