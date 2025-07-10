@@ -242,6 +242,7 @@ MonoBehaviour:
   characterPortrait: {fileID: 417162095}
   dialogPanel: {fileID: 1298798743}
   dialogText: {fileID: 2057339589}
+  characterNameText: {fileID: 1034936488}
   frames:
   - {fileID: 21300000, guid: b37094a6a0096304795e4c1b9ea9b7e9, type: 3}
   - {fileID: 21300000, guid: 54a8213802410b542936c5526db23e13, type: 3}
@@ -249,13 +250,72 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a2e76ab33e6b5c946add06737188c319, type: 3}
   dialogueLines:
   - characterPortrait: {fileID: 21300000, guid: 78a5912dd39e6264089f20928d7042e3, type: 3}
-    dialogueText: vsdg
+    characterName: "\u042E\u043D\u0430"
+    dialogueText: "\u041A\u0430\u0436\u0434\u044B\u0439 \u0448\u0430\u0433 \u043E\u0442\u0434\u0430\u0451\u0442\u0441\u044F
+      \u0432 \u0432\u0438\u0441\u043A\u0430\u0445, \u043A\u0430\u043A \u0431\u0430\u0440\u0430\u0431\u0430\u043D\u043D\u044B\u0439
+      \u0431\u043E\u0439. \u0412\u043E\u0442 \u043E\u043D, \u0435\u0433\u043E \u0434\u043E\u043C.
+      \u0414\u043E\u043C, \u0433\u0434\u0435 \u043E\u0431\u0438\u0442\u0430\u0435\u0442
+      \u043E\u043D, \u043C\u043E\u0439 \u043C\u0438\u0440, \u043C\u043E\u044F \u0432\u0441\u0435\u043B\u0435\u043D\u043D\u0430\u044F.
+      \u041C\u043D\u0435 \u043A\u0430\u0436\u0435\u0442\u0441\u044F, \u044F \u0438\u0434\u0443
+      \u043A \u043D\u0435\u043C\u0443 \u0446\u0435\u043B\u0443\u044E \u0432\u0435\u0447\u043D\u043E\u0441\u0442\u044C,
+      \u0445\u043E\u0442\u044F \u0434\u043E\u0448\u043B\u0430 \u0437\u0430 \u0441\u0447\u0438\u0442\u0430\u043D\u043D\u044B\u0435
+      \u043C\u0438\u043D\u0443\u0442\u044B. \u041C\u043E\u0451 \u0441\u0435\u0440\u0434\u0446\u0435
+      \u043A\u043E\u043B\u043E\u0442\u0438\u0442\u0441\u044F \u043A\u0430\u043A \u0431\u0435\u0448\u0435\u043D\u043E\u0435,
+      \u043D\u043E \u044F \u043D\u0435 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u044E\u0441\u044C.
+      \u042F \u0434\u043E\u043B\u0436\u043D\u0430 \u0431\u044B\u0442\u044C \u0442\u0430\u043C.
+      \u0421\u0435\u0439\u0447\u0430\u0441."
   - characterPortrait: {fileID: 21300000, guid: 78a5912dd39e6264089f20928d7042e3, type: 3}
-    dialogueText: dsgsdg
+    characterName: "\u042E\u043D\u0430"
+    dialogueText: "\u042F \u0441\u0442\u043E\u044E \u043F\u0440\u044F\u043C\u043E
+      \u043F\u0435\u0440\u0435\u0434 \u043D\u0435\u0439 \u2013 \u044D\u0442\u0430
+      \u0434\u0432\u0435\u0440\u044C, \u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u043E\u0442\u0434\u0435\u043B\u044F\u0435\u0442 \u043C\u0435\u043D\u044F \u043E\u0442
+      \u043D\u0435\u0433\u043E. \u041E\u0442 \u0435\u0433\u043E \u0437\u0430\u043F\u0430\u0445\u0430,
+      \u0435\u0433\u043E \u0432\u0435\u0449\u0435\u0439, \u0435\u0433\u043E \u0436\u0438\u0437\u043D\u0438.
+      \u0421\u043A\u043E\u043B\u044C\u043A\u043E \u0440\u0430\u0437 \u044F \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u043B\u0430
+      \u044D\u0442\u043E\u0442 \u043C\u043E\u043C\u0435\u043D\u0442? \u0422\u044B\u0441\u044F\u0447\u0438?
+      \u041C\u0438\u043B\u043B\u0438\u043E\u043D\u044B? \u041C\u043E\u0438 \u043F\u0430\u043B\u044C\u0446\u044B
+      \u0434\u0440\u043E\u0436\u0430\u0442, \u043D\u043E \u043D\u0435 \u043E\u0442
+      \u0441\u0442\u0440\u0430\u0445\u0430, \u0430 \u043E\u0442 \u043F\u0440\u0435\u0434\u0432\u043A\u0443\u0448\u0435\u043D\u0438\u044F.
+      \u042F \u0442\u0430\u043A \u0431\u043B\u0438\u0437\u043A\u0430. \u041D\u0430\u043A\u043E\u043D\u0435\u0446-\u0442\u043E."
   - characterPortrait: {fileID: 21300000, guid: 78a5912dd39e6264089f20928d7042e3, type: 3}
-    dialogueText: sdgsg
+    characterName: "\u042E\u043D\u0430"
+    dialogueText: "\u042D\u0442\u043E\u0442 \u043B\u0438\u0441\u0442\u043E\u043A
+      \u2013 \u043C\u043E\u044F \u043F\u043E\u0431\u0435\u0434\u0430. \u041C\u043E\u0438
+      \u0431\u0435\u0441\u0441\u043E\u043D\u043D\u044B\u0435 \u043D\u043E\u0447\u0438,
+      \u043C\u043E\u0438 \u043D\u0430\u0434\u0435\u0436\u0434\u044B, \u043C\u043E\u0438
+      \u043E\u0442\u0447\u0430\u044F\u043D\u0438\u044F\u2026 \u0412\u0441\u0451 \u044D\u0442\u043E
+      \u0432\u043B\u043E\u0436\u0435\u043D\u043E \u0432 \u044D\u0442\u0438 \u0446\u0438\u0444\u0440\u044B.
+      \u0413\u043E\u0434. \u0426\u0435\u043B\u044B\u0439 \u0433\u043E\u0434 \u044F
+      \u043F\u043E\u0434\u0431\u0438\u0440\u0430\u043B\u0430 \u044D\u0442\u043E\u0442
+      \u043A\u043E\u0434, \u043A\u0430\u0436\u0434\u044B\u0439 \u0434\u0435\u043D\u044C,
+      \u043D\u0430\u0443\u0433\u0430\u0434, \u043A\u0430\u043A \u0431\u0443\u0434\u0442\u043E
+      \u0438\u0433\u0440\u0430\u043B\u0430 \u0432 \u043B\u043E\u0442\u0435\u0440\u0435\u044E,
+      \u0433\u0434\u0435 \u0433\u043B\u0430\u0432\u043D\u044B\u0439 \u043F\u0440\u0438\u0437
+      \u2013 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u0440\u043E\u0441\u0442\u043E
+      \u0431\u044B\u0442\u044C \u0431\u043B\u0438\u0436\u0435 \u043A \u043D\u0435\u043C\u0443.
+      \u0418 \u0432\u043E\u0442 \u043E\u043D, \u0432\u044B\u0438\u0433\u0440\u044B\u0448.
+      \u042F \u043F\u043E\u043C\u043D\u044E \u044D\u0442\u043E\u0442 \u0434\u0435\u043D\u044C,
+      \u043A\u043E\u0433\u0434\u0430 \u043A\u043E\u043C\u0431\u0438\u043D\u0430\u0446\u0438\u044F
+      \u0441\u0440\u0430\u0431\u043E\u0442\u0430\u043B\u0430... \u041C\u043E\u0451
+      \u0441\u0435\u0440\u0434\u0446\u0435 \u0447\u0443\u0442\u044C \u043D\u0435
+      \u0432\u044B\u043F\u0440\u044B\u0433\u043D\u0443\u043B\u043E \u0438\u0437 \u0433\u0440\u0443\u0434\u0438."
   - characterPortrait: {fileID: 21300000, guid: 78a5912dd39e6264089f20928d7042e3, type: 3}
-    dialogueText: dgsdg
+    characterName: "\u042E\u043D\u0430"
+    dialogueText: "\u0429\u0435\u043B\u0447\u043E\u043A. \u0418 \u0434\u0432\u0435\u0440\u044C
+      \u043F\u043E\u0434\u0434\u0430\u043B\u0430\u0441\u044C. \u0412\u043E\u0437\u0434\u0443\u0445\u2026
+      \u044D\u0442\u043E \u0435\u0433\u043E \u0432\u043E\u0437\u0434\u0443\u0445.
+      \u042F \u0447\u0443\u0432\u0441\u0442\u0432\u0443\u044E \u0435\u0433\u043E
+      \u043F\u0440\u0438\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435, \u0434\u0430\u0436\u0435
+      \u043D\u0435 \u0432\u0438\u0434\u044F. \u041D\u0435\u0442 \u043F\u0443\u0442\u0438
+      \u043D\u0430\u0437\u0430\u0434. \u042F \u043F\u0435\u0440\u0435\u0441\u0442\u0443\u043F\u0430\u044E
+      \u043F\u043E\u0440\u043E\u0433. \u0422\u0435\u043F\u0435\u0440\u044C \u044F
+      \u0437\u0434\u0435\u0441\u044C, \u0432 \u0435\u0433\u043E \u043C\u0438\u0440\u0435.
+      \u0418 \u043D\u0438\u0447\u0435\u0433\u043E \u0443\u0436\u0435 \u043D\u0435
+      \u0431\u0443\u0434\u0435\u0442 \u043F\u0440\u0435\u0436\u043D\u0438\u043C."
+  textRevealSpeed: 0.05
+  nextSceneName: House
+  backgroundMusic: {fileID: 8300000, guid: 9d477d0ba3197384fb278b3a53458b4c, type: 3}
 --- !u!4 &946502060
 Transform:
   m_ObjectHideFlags: 0
@@ -271,6 +331,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1034936488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2634026658849269318, guid: d1549218933e73c4b9d766d72853ef7c, type: 3}
+  m_PrefabInstance: {fileID: 6744872733526016219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1244136018
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,18 +514,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1725541469823228372, guid: d1549218933e73c4b9d766d72853ef7c, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725541469823228372, guid: d1549218933e73c4b9d766d72853ef7c, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725541469823228372, guid: d1549218933e73c4b9d766d72853ef7c, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3548779419453872445, guid: d1549218933e73c4b9d766d72853ef7c, type: 3}
       propertyPath: m_Name
       value: Canvas

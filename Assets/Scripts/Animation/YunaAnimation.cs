@@ -48,7 +48,7 @@ public class PlayerAnimation : MonoBehaviour
                 animator.SetFloat("MoveY", moveVector.y > 0 ? 1 : -1);
             }
         }
-        Debug.Log($"Speed: {moveVector.magnitude}, MoveX: {animator.GetFloat("MoveX")}, MoveY: {animator.GetFloat("MoveY")}");
+       // Debug.Log($"Speed: {moveVector.magnitude}, MoveX: {animator.GetFloat("MoveX")}, MoveY: {animator.GetFloat("MoveY")}");
 
     }
 }

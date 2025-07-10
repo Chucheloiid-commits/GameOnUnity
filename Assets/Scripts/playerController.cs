@@ -42,4 +42,19 @@ public class movePlayer : MonoBehaviour
         // Для стабильности при использовании Rigidbody2D.MovePosition
         rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
     }
+    public void SetMovementEnabled(bool enabled)
+    {
+        if (playerInput != null)
+        {
+            if (enabled)
+            {
+                playerInput.actions.Enable();
+            }
+            else
+            {
+                playerInput.actions.Disable();
+            }
+        }
+    }
+
 }

@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class FogMask : MonoBehaviour
 {
-    public Tilemap fogTilemap; // Сюда перетаскиваем Tilemap с туманом
-    public TileBase fogTile;   // Указываем типовой туманный тайл (например, FogTile)
+    public Tilemap fogTilemap;
+    public TileBase fogTile;
+    public float waveDelay = 0.03f; // Задержка между тайлами в волне
 
-    // Позиции, где реально размещены туманные тайлы
     private HashSet<Vector3Int> fogPositions = new HashSet<Vector3Int>();
 
     void Awake()
@@ -32,7 +34,6 @@ public class FogMask : MonoBehaviour
         Debug.Log($"Загружено {fogPositions.Count} позиций тумана.");
     }
 
-    // Метод, чтобы открыть конкретную клетку
     public void RevealTile(Vector3Int cellPosition)
     {
         if (fogPositions.Contains(cellPosition))
@@ -42,16 +43,23 @@ public class FogMask : MonoBehaviour
         }
     }
 
-    // Метод, чтобы открыть целую комнату по маске
-    public void RevealTiles(IEnumerable<Vector3Int> positions)
+    public void RevealTiles(IEnumerable<Vector3Int> positions, Vector3Int origin)
     {
-        foreach (var pos in positions)
+        StartCoroutine(RevealWave(positions, origin));
+    }
+
+    private IEnumerator RevealWave(IEnumerable<Vector3Int> positions, Vector3Int origin)
+    {
+        // Сортируем по расстоянию от origin (например, позиции игрока)
+        var sorted = positions.OrderBy(p => Vector3Int.Distance(p, origin)).ToList();
+
+        foreach (var pos in sorted)
         {
             RevealTile(pos);
+            yield return new WaitForSeconds(waveDelay);
         }
     }
 
-    // Можно получить копию маски
     public HashSet<Vector3Int> GetFogMask()
     {
         return new HashSet<Vector3Int>(fogPositions);

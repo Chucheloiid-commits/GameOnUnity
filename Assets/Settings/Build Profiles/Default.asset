@@ -24,6 +24,8 @@ MonoBehaviour:
     m_path: Assets/Scenes/IntroScene.unity
   - m_enabled: 1
     m_path: Assets/Scenes/House.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/basement.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []

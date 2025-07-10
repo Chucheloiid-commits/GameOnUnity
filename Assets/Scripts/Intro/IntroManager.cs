@@ -2,42 +2,62 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using System.Collections; // Добавляем для работы с корутинами
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
 [System.Serializable]
 public class DialogEntry
 {
-    public Sprite characterPortrait;    // Портрет персонажа
+    public Sprite characterPortrait;     // Портрет персонажа
+    public string characterName;         // Имя персонажа
     [TextArea(2, 5)]
-    public string dialogueText;         // Текст диалога
+    public string dialogueText;          // Текст диалога
 }
 
 public class IntroManager : MonoBehaviour
 {
     [Header("UI Elements")]
-    public Image frameImage;             // Фон
-    public Image characterPortrait;      // Портрет персонажа
-    public GameObject dialogPanel;       // Панель диалога
-    public TextMeshProUGUI dialogText; // Текст диалога
+    public Image frameImage;                    // Фоновое изображение
+    public Image characterPortrait;             // Портрет персонажа
+    public GameObject dialogPanel;              // Панель диалога
+    public TextMeshProUGUI dialogText;          // Текст диалога
+    public TextMeshProUGUI characterNameText;   // Имя персонажа
 
     [Header("Content")]
-    public List<Sprite> frames;               // Фоновые кадры
-    public List<DialogEntry> dialogueLines;   // Диалоги с портретами
+    public List<Sprite> frames;                 // Слайды/фоновые кадры
+    public List<DialogEntry> dialogueLines;     // Диалоги (портрет, имя, текст)
 
-    [Header("Text Reveal Settings")] // Новые настройки для прорисовки текста
-    public float textRevealSpeed = 0.05f; // Скорость прорисовки (время между буквами)
-    private Coroutine currentRevealCoroutine; // Для отслеживания текущей корутины прорисовки
+    [Header("Text Reveal Settings")]
+    public float textRevealSpeed = 0.05f;       // Скорость появления текста
 
+    [Header("Scene Settings")]
+    public string nextSceneName = "House";      // Название сцены для перехода
+
+    [Header("Audio")]
+    public AudioClip backgroundMusic;           // Фоновая музыка
+    private AudioSource musicSource;
+
+    private Coroutine currentRevealCoroutine;
     private int currentIndex = 0;
-    private enum State { ShowFrameOnly, ShowDialog, RevealingText } // Добавляем состояние для прорисовки
+
+    private enum State { ShowFrameOnly, ShowDialog, RevealingText }
     private State currentState = State.ShowFrameOnly;
 
     void Start()
     {
+        // Воспроизведение фоновой музыки
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.clip = backgroundMusic;
+        musicSource.loop = true;
+        musicSource.playOnAwake = false;
+        musicSource.volume = 0.5f;
+        musicSource.Play();
+
         dialogPanel.SetActive(false);
         characterPortrait.gameObject.SetActive(false);
+        characterNameText.gameObject.SetActive(false);
+
         ShowFrame(currentIndex);
     }
 
@@ -51,42 +71,34 @@ public class IntroManager : MonoBehaviour
 
     void Advance()
     {
-        // Если текст прорисовывается, при клике мы хотим немедленно показать весь текст
         if (currentState == State.RevealingText)
         {
             if (currentRevealCoroutine != null)
             {
-                StopCoroutine(currentRevealCoroutine); // Останавливаем текущую корутину
+                StopCoroutine(currentRevealCoroutine);
             }
-            dialogText.maxVisibleCharacters = dialogText.text.Length; // Показываем весь текст сразу
-            currentState = State.ShowDialog; // Переходим в состояние полного отображения текста
-            return; // Завершаем функцию, чтобы не переходить к следующему диалогу сразу
+
+            dialogText.maxVisibleCharacters = dialogText.text.Length;
+            currentState = State.ShowDialog;
+            return;
         }
 
+        // Переход на другую сцену, если закончились кадры или диалоги
         if (currentIndex >= frames.Count || currentIndex >= dialogueLines.Count)
         {
-            SceneManager.LoadScene("House");
+            StopMusicAndLoadScene();
             return;
         }
 
         if (currentState == State.ShowFrameOnly)
         {
-            dialogPanel.SetActive(true);
-            characterPortrait.gameObject.SetActive(true);
-
-            // ЗАПУСКАЕМ КОРУТИНУ ДЛЯ ПРОРИСОВКИ ТЕКСТА
-            currentRevealCoroutine = StartCoroutine(RevealText(dialogueLines[currentIndex].dialogueText));
-            SetPortraitPreserveAspect(dialogueLines[currentIndex].characterPortrait);
-
-            currentState = State.RevealingText; // Устанавливаем новое состояние
+            ShowDialog();
         }
         else // currentState == State.ShowDialog
         {
-            // Этот блок выполняется, когда текст полностью показан и мы переходим к следующему кадру/диалогу
-            dialogPanel.SetActive(false);
-            characterPortrait.gameObject.SetActive(false);
-
+            HideDialog();
             currentIndex++;
+
             if (currentIndex < frames.Count && currentIndex < dialogueLines.Count)
             {
                 ShowFrame(currentIndex);
@@ -94,25 +106,45 @@ public class IntroManager : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("House");
+                StopMusicAndLoadScene();
             }
         }
     }
 
-    // НОВАЯ КОРУТИНА ДЛЯ ПРОРИСОВКИ ТЕКСТА
+    void ShowDialog()
+    {
+        dialogPanel.SetActive(true);
+        characterPortrait.gameObject.SetActive(true);
+        characterNameText.gameObject.SetActive(true);
+
+        characterPortrait.sprite = dialogueLines[currentIndex].characterPortrait;
+        characterNameText.text = dialogueLines[currentIndex].characterName;
+
+        currentRevealCoroutine = StartCoroutine(RevealText(dialogueLines[currentIndex].dialogueText));
+        SetPortraitPreserveAspect(dialogueLines[currentIndex].characterPortrait);
+
+        currentState = State.RevealingText;
+    }
+
+    void HideDialog()
+    {
+        dialogPanel.SetActive(false);
+        characterPortrait.gameObject.SetActive(false);
+        characterNameText.gameObject.SetActive(false);
+    }
+
     IEnumerator RevealText(string textToReveal)
     {
-        dialogText.text = textToReveal; // Устанавливаем весь текст
-        dialogText.maxVisibleCharacters = 0; // Изначально делаем текст невидимым
+        dialogText.text = textToReveal;
+        dialogText.maxVisibleCharacters = 0;
 
-        // Проходимся по каждой букве и постепенно увеличиваем количество видимых символов
         for (int i = 0; i <= textToReveal.Length; i++)
         {
             dialogText.maxVisibleCharacters = i;
-            yield return new WaitForSeconds(textRevealSpeed); // Ждем заданное время
+            yield return new WaitForSeconds(textRevealSpeed);
         }
 
-        currentState = State.ShowDialog; // После прорисовки переходим в состояние ShowDialog
+        currentState = State.ShowDialog;
     }
 
     void ShowFrame(int index)
@@ -151,5 +183,15 @@ public class IntroManager : MonoBehaviour
         }
 
         rt.sizeDelta = new Vector2(width, height);
+    }
+
+    void StopMusicAndLoadScene()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+        }
+
+        SceneManager.LoadScene(nextSceneName);
     }
 }

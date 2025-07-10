@@ -5,15 +5,15 @@ using System.Collections.Generic; // Для использования HashSet
 public class RoomDiscoverer : MonoBehaviour
 {
     // Ссылка на Tilemap, который будет использоваться для тумана войны.
-    // В вашем случае, это будет ваш Tilemap "Kitchen".
+  
     public Tilemap fogTilemap;
 
     // Ссылка на сам Tile Asset (ваш черный квадратный тайл).
-    // Перетащите сюда ваш 'FogTile' из окна Project.
+
     public TileBase fogTile;
 
     // Ссылка на ScriptableObject RoomData, который описывает эту комнату
-    // и ее соседей. Создайте RoomData Asset и перетащите его сюда.
+
     public RoomData currentRoomData;
 
     // Статический HashSet для отслеживания уже открытых комнат.
@@ -65,7 +65,7 @@ public class RoomDiscoverer : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // Убедитесь, что триггер реагирует только на игрока.
-        // У вашего игрока должен быть Tag "Player".
+
         if (other.CompareTag("Player"))
         {
             // Открываем комнату только если она еще не была обнаружена
@@ -124,7 +124,21 @@ public class RoomDiscoverer : MonoBehaviour
             }
         }
 
-        fogMask.RevealTiles(tilesToReveal);
+        // Получаем позицию игрока в координатах Tilemap
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Игрок не найден! Убедись, что у игрока установлен тег 'Player'.");
+            return;
+        }
+
+        Vector3 playerWorldPos = player.transform.position;
+        Vector3Int playerCellPos = fogTilemap.WorldToCell(playerWorldPos);
+
+        // Передаём список и позицию игрока как центр волны
+        fogMask.RevealTiles(tilesToReveal, playerCellPos);
+
         Debug.Log($"Открыто {tilesToReveal.Count} позиций тумана в комнате.");
     }
+
 }
